@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearbook Club - Making Memories Together</title>
+    <style>
+        /* ===== GENERAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ===== NAVIGATION BAR ===== */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            transform: translateY(-3px);
+            text-decoration: underline;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* ===== OVERVIEW SECTION ===== */
+        .overview-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-card h3 {
+            color: #f5576c;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* ===== FOUNDERS SECTION ===== */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .founder-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .founder-card:hover {
+            transform: scale(1.05);
+        }
+
+        .founder-photo {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .founder-info {
+            padding: 1.5rem;
+        }
+
+        .founder-info h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-info .role {
+            color: #f5576c;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CLASS OF 2025 SECTION ===== */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .student-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .student-photo {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .student-name {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Placeholder backgrounds for gallery items */
+        .gallery-item:nth-child(1) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .gallery-item:nth-child(2) { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .gallery-item:nth-child(3) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .gallery-item:nth-child(4) { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        .gallery-item:nth-child(5) { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+        .gallery-item:nth-child(6) { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
+
+        /* ===== CONTACT FORM ===== */
+        .contact-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#founders">Founders</a></li>
+            <li><a href="#class2025">Class of 2025</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <h1>📸 Yearbook Club</h1>
+        <p>Capturing memories, creating connections, and celebrating our school community one page at a time!</p>
+    </div>
+
+    <!-- OVERVIEW SECTION -->
+    <section id="overview">
+        <h2>What We Do</h2>
+        <p class="text-center mb-2">The Yearbook Club is dedicated to preserving the incredible moments that make our school year unforgettable. We're a creative team of students passionate about photography, design, and storytelling.</p>
+        
+        <div class="overview-content">
+            <div class="activity-card">
+                <h3>📷 Photography</h3>
+                <p>We capture candid moments, school events, sports games, and class activities throughout the year. Every photo tells a story!</p>
+            </div>
+            <div class="activity-card">
+                <h3>🎨 Design & Layout</h3>
+                <p>Our design team creates beautiful page layouts, selects color schemes, and ensures every spread looks amazing.</p>
+            </div>
+            <div class="activity-card">
+                <h3>✍️ Writing & Interviews</h3>
+                <p>We write engaging captions, conduct student interviews, and craft stories that bring our yearbook to life.</p>
+            </div>
+            <div class="activity-card">
+                <h3>🤝 Community Building</h3>
+                <p>We organize events, coordinate photo days, and make sure every student has a chance to be featured in the yearbook.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDERS SECTION -->
+    <section id="founders">
+        <h2>Meet Our Founders</h2>
+        <div class="founders-grid">
+            <div class="founder-card">
+                <div class="founder-photo">👩‍🎨</div>
+                <div class="founder-info">
+                    <h3>Sarah Johnson</h3>
+                    <p class="role">President & Lead Designer</p>
+                    <p>Sarah founded the Yearbook Club in 2023 with a vision to create a space where creativity meets community. She loves graphic design and photography.</p>
+                </div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-photo">👨‍💻</div>
+                <div class="founder-info">
+                    <h3>Marcus Chen</h3>
+                    <p class="role">Vice President & Head Photographer</p>
+                    <p>Marcus brings his passion for photography and storytelling to every event. He's captured thousands of moments and believes every student deserves to shine.</p>
+                </div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-photo">👩‍💼</div>
+                <div class="founder-info">
+                    <h3>Emily Rodriguez</h3>
+                    <p class="role">Editor-in-Chief</p>
+                    <p>Emily oversees all content and ensures the yearbook reflects our school's diversity and spirit. She's a talented writer with an eye for detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLASS OF 2025 SECTION -->
+    <section id="class2025">
+        <h2>Class of 2025</h2>
+        <p class="text-center mb-2">Celebrating our amazing graduating class! Each student brings something special to our school community.</p>
+        
+        <div class="students-grid">
+            <!-- Sample student cards - you can add more by copying this structure -->
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Alex Smith</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Jordan Lee</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Taylor Brown</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Morgan Davis</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Riley Wilson</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Casey Martin</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Jamie Garcia</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Sam Martinez</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Drew Anderson</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Quinn Taylor</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Avery Thomas</div>
+            </div>
+            <div class="student-card">
+                <div class="student-photo">🎓</div>
+                <div class="student-name">Parker Moore</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery">
+        <h2>Photo Gallery</h2>
+        <p class="text-center mb-2">A glimpse into the amazing moments we've captured this year!</p>
+        
+        <div class="gallery-grid">
+            <!-- Placeholder gallery items - replace with actual images -->
+            <div class="gallery-item">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">🏀</div>
+            </div>
+            <div class="gallery-item">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">🎭</div>
+            </div>
+            <div class="gallery-item">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">🎨</div>
+            </div>
+            <div class="gallery-item">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">⚽</div>
+            </div>
+            <div class="gallery-item">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">🎵</div>
+            </div>
+            <div class="gallery-item">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔬</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            
+            <div class="contact-info">
+                <p>Or email us directly at:</p>
+                <p><a href="mailto:yearbook@school.edu">yearbook@school.edu</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Yearbook Club. Made with ❤️ by students, for students.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR FORM HANDLING -->
+    <script>
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real website, you would send this data to a server
+            // For now, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been received. We'll get back to you at ${email} soon!`);
+            
+            // Reset the form
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
