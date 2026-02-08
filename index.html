@@ -95,73 +95,70 @@
 
        /* ===== HERO SECTION ===== */
 .hero {
-    background: 
-        linear-gradient(135deg, rgba(240, 147, 251, 0.85) 0%, rgba(245, 87, 108, 0.85) 100%),
-        url('Yearbook_Logo.jpg');
-    background-size: auto 75%;
-    background-position: center 40%;
-    background-repeat: no-repeat;
-    background-color: #f093fb;
-    color: white;
-    text-align: center;
-    padding: 8rem 2rem;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+            background: 
+                linear-gradient(135deg, rgba(240, 147, 251, 0.85) 0%, rgba(245, 87, 108, 0.85) 100%),
+                url('Yearbook_Logo.jpg');
+            background-size: cover;
+            background-position: center 20%; /* Crops the bottom by positioning the image higher */
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-    font-weight: 700;
-}
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
 
-.hero p {
-    font-size: 1.5rem;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    line-height: 1.8;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    font-style: italic;
-}
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-.hero-buttons {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-.hero-btn {
-    background: white;
-    color: #667eea;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
+        .hero-btn {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-.hero-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
 
-.hero-btn.secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-}
+        .hero-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
 
-.hero-btn.secondary:hover {
-    background: white;
-    color: #667eea;
-}
+        .hero-btn.secondary:hover {
+            background: white;
+            color: #667eea;
+        }
         
         /* ===== SECTION STYLES ===== */
         section {
